@@ -58,6 +58,7 @@ const DevicePage = () => {
 				</Col>
 			</Row>
 			<Row className="d-flex flex-column m-3">
+				<h1>Характеристики</h1>
 				{description.map((info, index) => {
 					return (
 						<Row
@@ -66,7 +67,7 @@ const DevicePage = () => {
 								background: index % 2 === 0 ? 'lightgray' : 'transparent',
 								padding: 10,
 							}}>
-							{info.title}: info.description
+							{info.title}: {info.description}
 						</Row>
 					);
 				})}
