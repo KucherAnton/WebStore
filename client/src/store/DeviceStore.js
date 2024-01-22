@@ -2,58 +2,14 @@ import { makeAutoObservable } from 'mobx';
 
 export default class DeviceStore {
 	constructor() {
-		this._types = [
-			{ id: 1, name: 'Смартфоны' },
-			{ id: 2, name: 'Холодильники' },
-			{ id: 3, name: 'Ноутбуки' },
-			{ id: 4, name: 'Телевизоры' },
-		];
-		this._brands = [
-			{ id: 1, name: 'Samsung' },
-			{ id: 2, name: 'Apple' },
-			{ id: 3, name: 'Lenovo' },
-			{ id: 4, name: 'Xiaomi' },
-		];
-		this._devices = [
-			{
-				id: 1,
-				name: '11 Pro',
-				price: '120000',
-				rating: '0',
-				img: 'https://img.freepik.com/free-photo/adorable-looking-kitten-with-yarn_23-2150886292.jpg',
-			},
-			{
-				id: 2,
-				name: '12 Pro',
-				price: '120000',
-				rating: '0',
-				img: 'https://img.freepik.com/free-photo/adorable-looking-kitten-with-yarn_23-2150886292.jpg',
-			},
-			{
-				id: 2,
-				name: '12 Pro',
-				price: '120000',
-				rating: '0',
-				img: 'https://img.freepik.com/free-photo/adorable-looking-kitten-with-yarn_23-2150886292.jpg',
-			},
-			{
-				id: 2,
-				name: '12 Pro',
-				price: '120000',
-				rating: '0',
-				img: 'https://img.freepik.com/free-photo/adorable-looking-kitten-with-yarn_23-2150886292.jpg',
-			},
-			{
-				id: 2,
-				name: '12 Pro',
-				price: '120000',
-				rating: '0',
-				img: 'https://img.freepik.com/free-photo/adorable-looking-kitten-with-yarn_23-2150886292.jpg',
-			},
-		];
-
+		this._types = [];
+		this._brands = [];
+		this._devices = [];
 		this._selectedType = {};
 		this._selectedBrand = {};
+		this._page = 1;
+		this._totalCount = 0;
+		this._limit = 3;
 		makeAutoObservable(this);
 	}
 
@@ -70,11 +26,21 @@ export default class DeviceStore {
 	}
 
 	setSelectedType(type) {
+		this.setPage(1);
 		this._selectedType = type;
 	}
 
 	setSelectedBrand(brand) {
+		this.setPage(1);
 		this._selectedBrand = brand;
+	}
+
+	setPage(page) {
+		this._page = page;
+	}
+
+	setTotalCount(count) {
+		this._totalCount = count;
 	}
 
 	get types() {
@@ -95,5 +61,17 @@ export default class DeviceStore {
 
 	get selectedBrand() {
 		return this._selectedBrand;
+	}
+
+	get page() {
+		return this._page;
+	}
+
+	get totalCount() {
+		return this._totalCount;
+	}
+
+	get limit() {
+		return this._limit;
 	}
 }
